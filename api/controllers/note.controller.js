@@ -45,7 +45,10 @@ export const getNotes = async (req, res, next) => {
   const limit = parseInt(req.query.limit) || 6;
 
   try {
-    const notes = await Note.find().sort({ pinned: -1, createdAt: -1 }).skip((page - 1) * limit).limit(limit);
+    const notes = await Note.find()
+      .sort({ pinned: -1, createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
 
     const totalNotes = await Note.countDocuments();
     res.status(200).json({
@@ -72,10 +75,12 @@ export const searchNote = async (req, res, next) => {
         ],
       }
     : {};
-    console.log("Search Filter =", JSON.stringify(searchFilter));
+  console.log("Search Filter =", JSON.stringify(searchFilter));
   try {
     const totalNotes = await Note.countDocuments(searchFilter);
-    const notes = await Note.find(searchFilter).skip((page - 1) * limit).limit(limit);
+    const notes = await Note.find(searchFilter)
+      .skip((page - 1) * limit)
+      .limit(limit);
     console.log("Notes Found =", notes);
     res.status(200).json({
       notes,
@@ -86,7 +91,7 @@ export const searchNote = async (req, res, next) => {
   }
 };
 
-export const updateNote = async (req,res,next) => {
+export const updateNote = async (req, res, next) => {
   const noteId = req.params.noteId;
 
   let slugContent;
@@ -104,18 +109,37 @@ export const updateNote = async (req,res,next) => {
     }
   }
 
-  try{
-    const updatedNote = await Note.findByIdAndUpdate(noteId,{
-      $set:{
-        title:req.body.title,
-        content:req.body.content,
-        pinned:req.body.pinned,
-        slug:slugContent.split(" ").join("-").toLowerCase().replace(/[^a-zA-Z0-9-]/g,"-"),
-      }
-    },{new:true});
+  try {
+    const updatedNote = await Note.findByIdAndUpdate(
+      noteId,
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          pinned: req.body.pinned,
+          slug: slugContent
+            .split(" ")
+            .join("-")
+            .toLowerCase()
+            .replace(/[^a-zA-Z0-9-]/g, "-"),
+        },
+      },
+      { new: true }
+    );
 
     res.status(200).json(updatedNote);
-  }catch(error){
+  } catch (error) {
     res.status(400).json(error);
   }
-}
+};
+
+export const deleteNote = async (req, res, next) => {
+  const noteId = req.params.noteId ? req.params.noteId : null;
+
+  try {
+    await Note.findByIdAndDelete(noteId);
+    res.status(200).json("This note has been deleted");
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
