@@ -1,0 +1,33 @@
+.sidebar .link{
+    text-decoration: none;
+    color: inherit;
+}
+.sidebar p{
+    font-size: 14px;
+    font-weight:500;
+}
+.sidebar i{
+    font-size: 20px;
+    color: #2d2e2d;
+    font-weight: 500;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    width: 350px;
+}
+.sidebar .menu-item{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    gap: 30px;
+    padding: 15px 45px;
+    border-radius: 0 25px 25px 0;
+}
+.sidebar .menu-item.active{
+    background-color: rgb(240, 225, 176) !important;
+}
+.sidebar .menu-item:hover{
+    background-color: #eceaea;
+}

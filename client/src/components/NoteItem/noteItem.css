@@ -1,0 +1,28 @@
+.note{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+    width: 300px;
+    border: 1px groove darkgrey;
+    padding: 15px;
+    border-radius: 10px;
+}
+.note .edit-options{
+    display: flex;
+    gap: 20px;
+    visibility: hidden;
+}
+.note:hover .edit-options{
+    visibility: visible;
+}
+.note .edit-options div:hover{
+    cursor: pointer;
+}
+.note:hover{
+    border: none;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.01),
+    2px 0px 6px rgba(0, 0, 0, 0.1),
+    -2px 0px 6px rgba(0, 0, 0, 0.1),
+    0px 4px 8px rgba(0, 0, 0, 0.2);;
+}

@@ -56,7 +56,7 @@ export const getNotes = async (req, res, next) => {
       totalNotes,
     });
   } catch (error) {
-    res.status(400).json(error);
+    next(error);
   }
 };
 
@@ -87,7 +87,7 @@ export const searchNote = async (req, res, next) => {
       totalNotes,
     });
   } catch (error) {
-    res.status(400).json(error);
+    next(error);
   }
 };
 
@@ -129,7 +129,7 @@ export const updateNote = async (req, res, next) => {
 
     res.status(200).json(updatedNote);
   } catch (error) {
-    res.status(400).json(error);
+    next(error);
   }
 };
 
@@ -140,6 +140,6 @@ export const deleteNote = async (req, res, next) => {
     await Note.findByIdAndDelete(noteId);
     res.status(200).json("This note has been deleted");
   } catch (error) {
-    res.status(400).json(error);
+    next(error);
   }
 };

@@ -1,0 +1,65 @@
+.search{
+    width: 550px;
+    height: 40px;
+    /* border: 1px groove darkgrey; */
+    border-radius: 5px;
+    padding: 15px;
+    transition: height 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.01),
+    2px 0px 6px rgba(0, 0, 0, 0.1),
+    -2px 0px 6px rgba(0, 0, 0, 0.1),
+    0px 4px 8px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.search.expanded {
+    height: auto;
+}
+.search .expandedInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+}
+.search .expandedInput .editor, .notes .note .display{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.search input, .search textarea{
+    width: 100%;
+    outline: none;
+    font-size:15px;
+    border: none;
+}
+.search .input::placeholder{
+    font-weight: 500;
+    color: black;
+}
+.search textarea {
+    resize: vertical; /* Allow the textarea to resize vertically */
+}
+.search .edit-options .edit-label .save input,.search .edit-options .edit-label .cancel{
+    border: 0.5px groove lightgrey;
+    padding: 3px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.search .edit-options .edit-icons{
+    cursor: pointer;
+}
+.search .edit-options .edit-label .save input:hover{
+color: white;
+background-color: rgb(245, 197, 77);
+}
+.search .edit-options{
+    display: flex;
+    justify-content: space-between;
+}
+.search .edit-options .edit-icons,.search .edit-options .edit-label{
+    display: flex;
+    gap: 20px;
+}

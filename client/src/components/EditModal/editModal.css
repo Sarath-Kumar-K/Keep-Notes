@@ -1,0 +1,53 @@
+.modal-outer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+.modal-outer .modal{
+    position: absolute;
+    top:170px;
+    left: 470px;
+    min-height: 180px;
+    max-height: fit-content;
+    width: 600px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.modal .editor{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.modal .editor input,.editor textarea{
+    border: none;
+    outline: none;
+}
+.modal .editor input{
+    font-size: 20px;
+    font-weight: 500;
+}
+.modal .editor textarea{
+    font-size: 16px;
+}
+.modal .edit-options{
+    display: flex;
+    justify-content: space-between;
+}
+.modal .edit-options .options,.edit-options .edit{
+    display: flex;
+    gap: 20px;
+}
+.modal .edit-options .options,.edit-options .edit i{
+    font-size: 18px;
+}
+.modal .edit-options .options,.edit-options .edit i,.modal .edit-options .options,.edit-options .edit .close,.modal .edit-options .options,.edit-options .edit .update{
+    cursor: pointer;
+}

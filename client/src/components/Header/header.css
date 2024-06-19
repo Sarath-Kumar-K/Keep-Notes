@@ -1,0 +1,93 @@
+header{
+    height: 65px;
+    width: 100%;
+    padding: 0 30px;
+    border-bottom: 0.5px groove lightgray;
+}
+nav{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.left-menu,.right-menu,.logo,.search-div{
+    display: flex;
+    align-items: center;
+}
+.right-menu i{
+    font-size: 20px;
+    color:gray;
+}
+
+
+/* styles for mobile screen specific */
+@media screen and (max-width: 600px) {
+    
+}
+
+/* styles for tablet screen specific */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    
+}
+
+/* styles for desktop screen speific */
+@media screen and (min-width: 1025px) {
+    .m-d{
+        display: none;
+    }
+    .left-menu{
+        flex:6.5;
+        justify-content: space-between;
+    }
+    .right-menu{
+        flex:3.5;
+        gap: 30px;
+        justify-content: end;
+    }
+    .logo{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+    .left-menu .search-div{
+        gap: 5px;
+        height: 75%;
+        border-radius: 10px;
+        /* padding: 5px 10px; */
+        background-color: #edf0ef;
+        padding:0 10px;
+    }
+    .search-div button{
+        padding:5px 5px;
+        background-color:#edf0ef;
+        border: none;
+    }
+    .left-menu input{
+        width: 610px;
+        border: none;
+        outline: none;
+        background-color:#edf0ef;
+        padding: 5px 0px;
+        font-size: 16px;
+    }
+    .search-div button{
+        padding: 10px 15px;
+        border-radius: 50%;
+    }
+    .search-div button:hover{
+        background-color: lightgray;
+    }
+    .left-menu input:focus + .clear{
+        visibility: visible;
+    }
+    .left-menu input:focus + .clear:hover{
+        background-color: lightgray;
+    }
+    .left-menu i{
+        font-size: 15px;
+        color: gray;
+    }
+    .clear{
+        visibility: hidden;
+    }
+}
