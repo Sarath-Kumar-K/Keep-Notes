@@ -86,7 +86,25 @@ const useNotes = () => {
     }
   };
 
-  return { notes, totalNotes, page, setTrigger, setPage, fetchNotes, addNote, editNote, deleteNote, error };
+  const searchNote = async (searchTerm) =>{
+    try{
+      const res = await fetch(`/api/note/searchnote?searchTerm=${searchTerm}`,{
+        method:"GET",
+      });
+      const data = await res.json();
+      if(res.ok){
+        setNotes(data.notes);
+        setTotalNotes(data.totalNotes);
+      }else{
+        setError(error.message)
+      }
+    }catch(error){
+      setError(error.message);
+    }
+  };
+
+  return { notes, totalNotes, page, setTrigger, setPage, fetchNotes, addNote, editNote, deleteNote, searchNote, error };
 };
+
 
 export default useNotes;

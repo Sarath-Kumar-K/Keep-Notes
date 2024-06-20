@@ -1,0 +1,74 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.container .main .icon i{
+    color: lightgray;
+}
+.container .main .description p{
+    color: grey;
+}
+.container .main .announcement p{
+    color: rgb(241, 186, 57);
+}
+
+@media screen and (max-width: 483px) {
+    .container .main .icon i{
+        font-size: 50px;
+    }
+    .container .main .description p{
+        font-size: 16px;
+        text-align: center;
+        line-height: 25px;
+    }
+    .container .main .announcement p{
+        font-size: 13px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 484px) and (max-width:737px){
+    .container .main .icon i{
+        font-size: 50px;
+    }
+    .container .main .description p{
+        font-size: 16px;
+        text-align: center;
+        line-height: 25px;
+    }
+    .container .main .announcement p{
+        font-size: 13px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 738px) and (max-width: 1023px) {
+    .container .main .icon i{
+        font-size: 80px;
+    }
+    .container .main .description p{
+        font-size: 18px;
+        text-align: center;
+        line-height: 28px;
+    }
+    .container .main .announcement p{
+        font-size: 15px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container .main .icon i{
+        font-size: 100px;
+    }
+    .container .main .description p{
+        font-size: 28px;
+    }
+}

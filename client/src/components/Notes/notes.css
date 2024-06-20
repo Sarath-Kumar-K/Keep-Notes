@@ -36,7 +36,10 @@
         gap: 25px;
     }
     .main .pagination{
-        gap: 5px;
+        gap: 15px;
+    }
+    .main .pagination button {
+        padding: 3px 5px;
     }
 }
 
@@ -54,7 +57,10 @@
         gap: 40px;
     }
     .main .pagination{
-        gap: 5px;
+        gap: 15px;
+    }
+    .main .pagination button {
+        padding: 5px 8px;
     }
 }
 
@@ -75,7 +81,7 @@
     
     /* pagination styles */
     .main .pagination {
-        gap: 5px;
+        gap: 15px;
     }
       
     .main .pagination button {

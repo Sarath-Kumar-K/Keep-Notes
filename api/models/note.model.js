@@ -13,6 +13,10 @@ const noteSchema = mongoose.Schema(
             type:Boolean,
             default:false,
         },
+        archived:{
+            type:Boolean,
+            default:false,
+        },
         slug:{
             type:String,
             required:true,

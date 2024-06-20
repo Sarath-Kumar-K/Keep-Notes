@@ -11,6 +11,7 @@ nav{
 header .left-menu,header .right-menu,header .logo,header .search-div{
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 header .right-menu i{
     font-size: 20px;
@@ -21,55 +22,81 @@ header .logo{
     justify-content: space-between;
     align-items: center;
 }
-
+header .search-div button{
+    background-color:#edf0ef;
+    border: none;
+}
+header .search-div button:hover{
+    background-color: lightgray;
+}
+header .left-menu input:focus + .clear{
+    visibility: visible;
+}
+header .left-menu input:focus + .clear:hover{
+    background-color: lightgray;
+}
+header .left-menu i{
+    font-size: 15px;
+    color: gray;
+}
+header .clear{
+    visibility: hidden;
+}
 /* styles for mobile screen specific */
 @media screen and (max-width: 483px) {
     header{
-        padding: 0 20px;
+        padding: 0 15px;
     }
     header .left-menu{
-        gap: 5px;
+        justify-content: space-between;
+        gap: 50px;
     }
     header .logo img{
         height: 30px;
         width: 30px;
         object-fit: cover;
     }
-    header .menu-bar i{
+    /* header .menu-bar i{
 font-size: 20px;
-    }
+    } */
     header .right-menu{
+        display: none;
+    }
+    /* header .right-menu{
         flex:3.5;
         gap: 20px;
         justify-content: end;
-    }
+    } */
     header .logo{
+        flex:1;
         gap: 5px;
     }
-    header .left-menu input{
-        width: 70px;
+    header .left-menu .search-div input{
+        width: 80%;
         border: none;
         outline: none;
         background-color:#edf0ef;
         padding: 5px 0px;
         font-size: 16px;
     }
-    header .d-d{
-        display: none;
+    header .left-menu .search-div{
+        flex:2;
+        gap: 5px;
+        height: 50%;
+        border-radius: 5px;
+        background-color: #edf0ef;
+        padding:0px 10px;
     }
-    header .right-menu i{
+    /* header .right-menu i{
         font-size: 20px;
     }
     header .right-menu .m-search input{
         display: none;
-    }
+    } */
 }
 @media screen and (min-width: 484px) and (max-width:737px){
     header{
-        padding: 0 30px;
-    }
-    header .left-menu{
-        gap: 20px;
+        padding: 0 20px;
     }
     header .logo img{
         height: 35px;
@@ -80,11 +107,10 @@ font-size: 20px;
 font-size: 25px;
     }
     header .right-menu{
-        flex:3.5;
-        gap: 30px;
-        justify-content: end;
+        display: none;
     }
     header .logo{
+        flex:1;
         gap: 10px;
     }
     header .left-menu input{
@@ -95,15 +121,27 @@ font-size: 25px;
         padding: 5px 0px;
         font-size: 16px;
     }
-    header .d-d{
-        display: none;
+    header .left-menu{
+        justify-content: space-between;
+        gap: 100px;
     }
-    header .right-menu i{
+    header .left-menu .search-div{
+        flex:2;
+        gap: 5px;
+        height: 50%;
+        border-radius: 5px;
+        background-color: #edf0ef;
+        padding:0px 10px;
+    }
+    header .left-menu .search-div input{
+        width: 80%;
+        border: none;
+        outline: none;
+        background-color:#edf0ef;
+        padding: 5px 0px;
         font-size: 16px;
     }
-    header .right-menu .m-search input{
-        display: none;
-    }
+    
 }
 /* styles for tablet screen specific */
 @media screen and (min-width: 738px) and (max-width: 1023px) {
@@ -197,9 +235,10 @@ font-size: 25px;
         padding:0 10px;
     }
     header .search-div button{
-        padding:5px 5px;
         background-color:#edf0ef;
         border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
     }
     header .left-menu input{
         width: 610px;
@@ -208,25 +247,5 @@ font-size: 25px;
         background-color:#edf0ef;
         padding: 5px 0px;
         font-size: 16px;
-    }
-    header .search-div button{
-        padding: 10px 15px;
-        border-radius: 50%;
-    }
-    header .search-div button:hover{
-        background-color: lightgray;
-    }
-    header .left-menu input:focus + .clear{
-        visibility: visible;
-    }
-    header .left-menu input:focus + .clear:hover{
-        background-color: lightgray;
-    }
-    header .left-menu i{
-        font-size: 15px;
-        color: gray;
-    }
-    header .clear{
-        visibility: hidden;
     }
 }

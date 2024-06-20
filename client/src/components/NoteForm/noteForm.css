@@ -11,6 +11,8 @@
 }
 .search:not(.expanded){
     justify-content: space-between;
+    align-items: center;
+    padding-right:15px;
 }
 .search.expanded {
     flex-direction: column;
@@ -34,9 +36,9 @@
     font-size:15px;
     border: none;
 }
-.search .input::placeholder{
-    font-weight: 500;
-    color: black;
+.search .input::placeholder,.search .fa-pen{
+    font-weight: 600;
+    color: rgb(104, 103, 103);
 }
 .search textarea {
     resize: vertical; /* Allow the textarea to resize vertically */

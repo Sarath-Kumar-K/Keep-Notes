@@ -12,8 +12,18 @@
     display: flex;
     justify-content: space-between;
 }
-.note .display .title-date div{
+.note .display .title-date .edit-date{
     min-width: fit-content;
+}
+.note .display .title-date .title p, .note .display .content p{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 .note .display .title-date .edit-date{
     color: grey;
@@ -94,9 +104,12 @@
     .note:hover .edit-options{
         visibility: visible;
     }
+    .note .edit-options div i{
+        color: gray;
+    }
     .note .edit-options div i:hover{
         cursor: pointer;
-        color: rgb(108, 171, 244);   
+        color: black;   
     }
     .note:hover{
         border: none;

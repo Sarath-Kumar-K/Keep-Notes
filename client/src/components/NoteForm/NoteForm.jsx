@@ -30,7 +30,7 @@ const NoteForm = ({triggerRender}) => {
     >
       <input
         type="text"
-        className=".input"
+        className="input"
         placeholder="Take a note..."
         readOnly
         style={{ display: isExpanded ? "none" : "" }}

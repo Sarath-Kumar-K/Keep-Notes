@@ -6,9 +6,6 @@
     display: flex;
     flex-direction: column;
 }
-.sidebar .menu-item.active{
-    background-color: rgb(240, 225, 176) !important;
-}
 
 @media screen and (max-width: 483px) {
     .sidebar .d-d,.sidebar .menu-item p{

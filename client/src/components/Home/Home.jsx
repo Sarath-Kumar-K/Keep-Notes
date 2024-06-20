@@ -3,11 +3,13 @@ import './home.css';
 import Sidebar from '../Sidebar/Sidebar.jsx';
 import Notes from '../Notes/Notes.jsx';
 import {useLocation } from "react-router-dom";
+import Editlabel from '../Editlabel/Editlabel.jsx';
+import Archive from '../Archive/Archive.jsx';
+import Remainders from '../Remainders/Remainders.jsx';
+import Bin from '../Bin/Bin.jsx';
 const Home = () => {
   const [tab, setTab] = useState("notes");
   const location = useLocation();
-  const [notes, setNotes] = useState([]);
-  const [dataChange, setDataChange] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -15,25 +17,7 @@ const Home = () => {
     setTab(tabFromUrl);
   }, [location.search]);
 
-  const updateNotes = (newNotes) => {
-    setNotes(newNotes);
-  }
-  useEffect(()=>{
-    const fetchNotes = async () =>{
-      try{
-        const res = await fetch(`/api/note/getnotes`,{
-          method:"GET"
-        });
-        const data = await res.json();
-        if(data){
-          setNotes(data.notes);
-        }
-      }catch(error){
-        console.log(error.message);
-      }
-    }
-    fetchNotes();
-  },[dataChange]);
+  
     // const notes = [
     //     {
     //         "_id": "666aaf5625023b7f1a6a6a74",
@@ -123,22 +107,25 @@ const Home = () => {
   return (
     <div className='home'>
       {/* {sidebar} */}
-      <Sidebar />
+      <Sidebar Tab={tab}/>
 
       {/* {notes} */}
-      {(tab === "notes" || !tab) && <Notes notes={notes} updateNotes={updateNotes} tab={tab}/>}
+      {(tab === "notes" || !tab) && <Notes tab={tab}/>}
 
       {/* {remainders} */}
       {tab === "remainders" && <Remainders tab={tab}/>}
 
       {/* {edit-labels} */}
-      {tab === "edit-labels" && <EditLabels tab={tab}/>}
+      {tab === "editlabels" && <Editlabel tab={tab}/>}
 
       {/* {archive} */}
       {tab === "archive" && <Archive tab={tab}/>}
 
       {/* {bin} */}
       {tab === "bin" && <Bin tab={tab}/>}
+
+      {/* search */}
+      {tab === "search" && <Notes tab={tab}/>}
     </div>
   )
 }
