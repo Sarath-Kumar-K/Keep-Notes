@@ -1,16 +1,12 @@
 .search{
-    width: 550px;
-    height: 40px;
-    /* border: 1px groove darkgrey; */
-    border-radius: 5px;
-    padding:10px 15px;
     transition: height 0.3s ease;
     overflow: hidden;
+    border-radius: 5px;
     box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.01),
     2px 0px 6px rgba(0, 0, 0, 0.1),
     -2px 0px 6px rgba(0, 0, 0, 0.1),
     0px 4px 8px rgba(0, 0, 0, 0.2);
-
+    
     display: flex;
 }
 .search:not(.expanded){
@@ -25,7 +21,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100px;
+    padding: 3px 3px 0px 0px;
 }
 .search .expandedInput .editor, .notes .note .display{
     display: flex;
@@ -55,8 +51,8 @@
     cursor: pointer;
 }
 .search .edit-options .edit-label .save input:hover{
-color: white;
-background-color: rgb(245, 197, 77);
+    color: white;
+    background-color: rgb(245, 197, 77);
 }
 .search .edit-options{
     display: flex;
@@ -64,5 +60,62 @@ background-color: rgb(245, 197, 77);
 }
 .search .edit-options .edit-icons,.search .edit-options .edit-label{
     display: flex;
-    gap: 20px;
+}
+
+@media screen and (max-width: 483px) {
+    .search{
+        width: 290px;
+        height: 40px;
+        padding: 5px 8px;
+    }
+    .search .expandedInput{
+        min-height: 80px;
+    }
+    .search .edit-options .edit-icons,.search .edit-options .edit-label{
+        gap: 10px;
+    }
+}
+
+@media screen and (min-width: 484px) and (max-width:737px){
+    .search{
+        width: 350px;
+        height: 40px;
+        padding: 5px 8px;
+    }
+    .search .expandedInput{
+        min-height: 90px;
+    }
+    .search .edit-options .edit-icons,.search .edit-options .edit-label{
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 738px) and (max-width: 1023px) {
+    .search{
+        width: 450px;
+        height: 40px;
+        padding:10px 15px;
+    }
+    .search .expandedInput{
+        min-height: 100px;
+    }
+    .search .edit-options .edit-icons,.search .edit-options .edit-label{
+        display: flex;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .search{
+        width: 550px;
+        height: 40px;
+        padding:10px 15px;
+    }
+    .search .expandedInput{
+        min-height: 100px;
+    }
+    .search .edit-options .edit-icons,.search .edit-options .edit-label{
+        display: flex;
+        gap: 20px;
+    }
 }
