@@ -1,40 +1,101 @@
-.main{
-    padding: 40px;
+.maim{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
 }
-/* notes styles */
-.notes{
+.main .notes{
     display: grid;
-    grid-template-columns: repeat(3,auto);
-    grid-template-rows: repeat(2,auto);
-    gap: 50px;
 }
-
-/* pagination styles */
-.pagination {
-    /* display: inline-block; */
+.main .pagination{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
 }
-  
-.pagination button {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    border: none;
-}
-  
-.pagination button.active {
+.main .pagination button.active {
     background-color: rgb(240, 225, 176);
 }
   
-.pagination button:hover:not(.active){
+.main .pagination button:hover:not(.active){
     background-color: #ddd;
+}
+.main .pagination button{
+    color: black;
+    float: left;
+    text-decoration: none;
+    border: none;
+}
+
+@media screen and (max-width: 483px) {
+    .main{
+        padding: 15px;
+        gap: 25px;
+    }
+    .main .notes{
+        grid-template-columns: repeat(2,auto);
+        grid-template-rows: repeat(3,auto);
+        gap: 15px;
+    }
+    .main .pagination{
+        gap: 5px;
+    }
+}
+
+@media screen and (min-width: 484px) and (max-width:737px){
+    .main{
+        padding: 20px;
+        gap: 30px;
+    }
+    .main .notes{
+        grid-template-columns: repeat(2,auto);
+        grid-template-rows: repeat(3,auto);
+        gap: 20px;
+    }
+    .main .pagination{
+        gap: 5px;
+    }
+}
+
+@media screen and (min-width: 738px) and (max-width: 1023px) {
+    .main{
+        padding: 30px;
+        gap: 40px;
+    }
+    /* notes styles */
+    .main .notes{
+        grid-template-columns: repeat(3,auto);
+        grid-template-rows: repeat(2,auto);
+        gap: 40px;
+    }
+    
+    /* pagination styles */
+    .main .pagination {
+        gap: 5px;
+    }
+      
+    .main .pagination button {
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .main{
+        padding: 40px;
+        gap: 50px;
+    }
+    /* notes styles */
+    .main .notes{
+        grid-template-columns: repeat(3,auto);
+        grid-template-rows: repeat(2,auto);
+        gap: 50px;
+    }
+    
+    /* pagination styles */
+    .main .pagination {
+        gap: 5px;
+    }
+      
+    .main .pagination button {
+        padding: 8px 16px;
+    }
 }
