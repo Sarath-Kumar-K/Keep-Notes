@@ -2,32 +2,109 @@
     text-decoration: none;
     color: inherit;
 }
-.sidebar p{
-    font-size: 14px;
-    font-weight:500;
-}
-.sidebar i{
-    font-size: 20px;
-    color: #2d2e2d;
-    font-weight: 500;
-}
 .sidebar{
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
-    width: 350px;
-}
-.sidebar .menu-item{
-    display: flex;
-    align-items: center;
-    width: 300px;
-    gap: 30px;
-    padding: 15px 45px;
-    border-radius: 0 25px 25px 0;
 }
 .sidebar .menu-item.active{
     background-color: rgb(240, 225, 176) !important;
 }
-.sidebar .menu-item:hover{
-    background-color: #eceaea;
+
+@media screen and (max-width: 483px) {
+    .sidebar .d-d,.sidebar .menu-item p{
+        display: none;
+    }
+    .sidebar{
+        gap: 25px;
+        padding: 10px 10px;
+    }
+    .sidebar .menu-item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    .sidebar i{
+        font-size: 22px;
+        color: #2d2e2d;
+        font-weight: 500;
+        padding: 8px;
+    }
+}
+
+@media screen and (min-width: 484px) and (max-width:737px){
+    .sidebar .d-d,.sidebar .menu-item p{
+        display: none;
+    }
+    .sidebar{
+        gap: 25px;
+        padding: 15px 15px;
+    }
+    .sidebar .menu-item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    .sidebar i{
+        font-size: 25px;
+        color: #2d2e2d;
+        font-weight: 500;
+        padding: 8px;
+    }
+}
+
+@media screen and (min-width: 738px) and (max-width: 1024px) {
+    .sidebar p{
+        font-size: 14px;
+        font-weight:500;
+    }
+    .sidebar i{
+        font-size: 20px;
+        color: #2d2e2d;
+        font-weight: 500;
+    }
+    .sidebar{
+        padding-top: 15px;
+        width: 300px;
+        gap: 10px;
+    }
+    .sidebar .menu-item{
+        display: flex;
+        align-items: center;
+        width: 200px;
+        gap: 25px;
+        padding: 10px 40px;
+        border-radius: 0 20px 20px 0;
+    }
+    .sidebar .menu-item:hover{
+        background-color: #eceaea;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .sidebar p{
+        font-size: 14px;
+        font-weight:500;
+    }
+    .sidebar i{
+        font-size: 20px;
+        color: #2d2e2d;
+        font-weight: 500;
+    }
+    .sidebar{
+        padding-top: 10px;
+        width: 350px;
+    }
+    .sidebar .menu-item{
+        display: flex;
+        align-items: center;
+        width: 300px;
+        gap: 30px;
+        padding: 15px 45px;
+        border-radius: 0 25px 25px 0;
+    }
+    .sidebar .menu-item:hover{
+        background-color: #eceaea;
+    }
 }

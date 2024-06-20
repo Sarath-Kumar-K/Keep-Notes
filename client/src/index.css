@@ -12,6 +12,10 @@ body{
   overflow-y: hidden;
 }
 /* styles for mobile screen specific */
-@media screen and (max-width: 600px) {
-    
-}
+@media screen and (max-width: 483px) {}
+
+@media screen and (min-width: 484px) and (max-width:737px){}
+
+@media screen and (min-width: 738px) and (max-width: 1023px) {}
+
+@media screen and (min-width: 1024px) {}
