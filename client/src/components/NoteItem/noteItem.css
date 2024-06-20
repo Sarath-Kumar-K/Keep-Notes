@@ -2,11 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 150px;
-    width: 300px;
     border: .5px groove lightgray;
-    padding: 15px;
-    border-radius: 10px;
 }
 .note .display{
     width: 100%;
@@ -21,24 +17,92 @@
 }
 .note .display .title-date .edit-date{
     color: grey;
-    font-size: small;
 }
 .note .edit-options{
     display: flex;
-    gap: 20px;
-    visibility: hidden;
 }
-.note:hover .edit-options{
-    visibility: visible;
+@media screen and (max-width: 483px) {
+    .note{
+        min-height: 100px;
+        width: 250px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .note .edit-options{
+        gap:10px;
+    }
+    .note .edit-options i{
+        font-size: 12px;
+        color: gray;
+    }
+    .note .display .title-date .edit-date{
+        font-size: smaller;
+    }
 }
-.note .edit-options div i:hover{
-    cursor: pointer;
-    color: rgb(108, 171, 244);   
+
+@media screen and (min-width: 484px) and (max-width:737px){
+    .note{
+        min-height: 100px;
+        width: 180px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .note .edit-options{
+        gap:10px;
+    }
+    .note .edit-options i{
+        font-size: 12px;
+        color: gray;
+    }
+    .note .display .title-date .edit-date{
+        font-size: smaller;
+    }
 }
-.note:hover{
-    border: none;
-    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.01),
-    2px 0px 6px rgba(0, 0, 0, 0.1),
-    -2px 0px 6px rgba(0, 0, 0, 0.1),
-    0px 4px 8px rgba(0, 0, 0, 0.2);;
+
+@media screen and (min-width: 738px) and (max-width: 1080px) {
+    .note{
+        min-height: 150px;
+        width: 300px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .note .display .title-date .edit-date{
+        font-size: small;
+    }
+    .note .edit-options{
+        gap: 20px;
+    }
+    .note .edit-options i{
+        color: gray;
+    }
+}
+
+@media screen and (min-width: 1081px) {
+    .note{
+        min-height: 150px;
+        width: 300px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .note .display .title-date .edit-date{
+        font-size: small;
+    }
+    .note .edit-options{
+        gap: 20px;
+        visibility: hidden;
+    }
+    .note:hover .edit-options{
+        visibility: visible;
+    }
+    .note .edit-options div i:hover{
+        cursor: pointer;
+        color: rgb(108, 171, 244);   
+    }
+    .note:hover{
+        border: none;
+        box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.01),
+        2px 0px 6px rgba(0, 0, 0, 0.1),
+        -2px 0px 6px rgba(0, 0, 0, 0.1),
+        0px 4px 8px rgba(0, 0, 0, 0.2);;
+    }
 }

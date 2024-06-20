@@ -9,7 +9,7 @@ body{
   direction: ltr;
   font-family: "Roboto", arial, sans-serif;
   font-size: 15px;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 /* styles for mobile screen specific */
 @media screen and (max-width: 483px) {}
