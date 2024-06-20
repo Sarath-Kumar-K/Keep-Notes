@@ -72,7 +72,7 @@ const useNotes = () => {
 
   const deleteNote = async (noteId) => {
     try {
-      const res = await fetch(`/api/notes/${noteId}`, {
+      const res = await fetch(`/api/note/delete/${noteId}`, {
         method: "DELETE",
       });
       const data = await res.json();
@@ -86,7 +86,7 @@ const useNotes = () => {
     }
   };
 
-  return { notes, totalNotes, page, setPage, fetchNotes, addNote, editNote, deleteNote, error };
+  return { notes, totalNotes, page, setTrigger, setPage, fetchNotes, addNote, editNote, deleteNote, error };
 };
 
 export default useNotes;

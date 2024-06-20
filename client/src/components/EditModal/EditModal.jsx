@@ -1,47 +1,71 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./editModal.css";
+import useNotes from "../../hooks/useNotes";
 
-const EditModal = ({ note, onClose}) => {
+const EditModal = ({ note, onClose, triggerRender, deleteHandle}) => {
+  const {editNote} = useNotes();
   const [formData, setFormData] = useState({});
-  const modelRef = useRef(null);
   const [pinnedNote, setPinnedNote] = useState(note.pinned);
-  const handleClickOutside = (event) => {
-    if (modelRef.current && !modelRef.current.contains(event.target)) {
-      onClose(false);
-    }
-  };
-  useEffect(() => {
-    if (modelRef.current) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const date = new Date(note.updatedAt);
+  const options = {month: 'short',day:'numeric'};
+  const formatedDate = date.toLocaleDateString('en-us',options);
+
+  console.log(formData);
 
   if (!note) {
     return null;
   }
+  useEffect(() => {
+    if (note) {
+      setFormData({ title: note.title, content: note.content, pinned: note.pinned });
+    }
+  }, [note]);
+
+  const handlePinned = (pinnedNote)=>{
+    setFormData({...formData,pinned:!pinnedNote});
+    setPinnedNote(!pinnedNote);
+  }
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    try{
+      await editNote(note._id,formData);
+      triggerRender(prev => prev + 1);
+      setFormData({});
+      onClose(false);
+    }catch(error){
+      console.log(error.message);
+    }
+  };
+
+  const handleDelete = (noteId) => {
+    deleteHandle(noteId);
+    onClose(false);
+  }
+
   return (
     <div className="modal-outer">
-      <form className="modal" ref={modelRef}>
+      <form onSubmit={handleSubmit} className="modal">
         <div className="editor">
+          <div className="title-date">
           <input
             type="text"
             placeholder="Title"
-            value={note.title}
+            defaultValue={note.title}
             onChange={(e)=> setFormData({...formData,title:e.target.value})}
+            className="title"
           />
+          <div className="date">{`Edited `+ formatedDate}</div>
+          </div>
           <textarea
             placeholder="Content"
-            value={note.content}
+            defaultValue={note.content}
             onChange={(e)=> setFormData({...formData,content:e.target.value})}
             autoFocus
           />
         </div>
         <div className="edit-options">
           <div className="options">
-            <div onClick={()=>setPinnedNote(!pinnedNote)}>
+            <div onClick={()=>handlePinned(pinnedNote)}>
               {pinnedNote ? (
                 <i
                   className="bi bi-pin-fill"
@@ -57,12 +81,12 @@ const EditModal = ({ note, onClose}) => {
             <div>
               <i className="bi bi-box-arrow-down"></i>
             </div>
-            <div>
+            <div onClick={()=>handleDelete(note._id)}>
               <i className="fa-regular fa-trash-can"></i>
             </div>
           </div>
           <div className="edit">
-            <div className="close">close</div>
+            <div className="cancel" onClick={()=>onClose(false)}>cancel</div>
             <div className="update">
               <input type="submit" value="update" />
             </div>

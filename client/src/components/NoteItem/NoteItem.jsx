@@ -1,17 +1,22 @@
-import React, { useEffect } from "react";
-import './noteItem.css';
+import React from "react";
+import "./noteItem.css";
 
-const NoteItem = ({note}) => {
-  
+const NoteItem = ({ note, editNote, deleteHandle }) => {
+  const date = new Date(note.updatedAt);
+  const options = {month: 'short',day:'numeric'};
+  const formatedDate = date.toLocaleDateString('en-us',options);
   const handleNoteClick = (note) => {
-    setCurrentNote(note);
+    editNote(note);
   };
-  
 
   return (
-    <div className="note" key={note._id} onClick={() => handleNoteClick(note)}>
-      <div className="display">
-        <div>{note.title}</div>
+    <div className="note" key={note._id}>
+      <div className="display" onClick={() => handleNoteClick(note)}>
+        <div className="title-date">
+        <div className="title">{note.title}</div>
+        <div className="edit-date">{formatedDate}</div>
+        </div>
+        
         <div>{note.content}</div>
       </div>
       <div className="edit-options">
@@ -33,7 +38,10 @@ const NoteItem = ({note}) => {
         <div>
           <i className="bi bi-box-arrow-down"></i>
         </div>
-        <div>
+        <div  onClick={() => handleNoteClick(note)}>
+          <i className="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div onClick={()=>deleteHandle(note._id)}>
           <i className="fa-regular fa-trash-can"></i>
         </div>
       </div>

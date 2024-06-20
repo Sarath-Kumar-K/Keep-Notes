@@ -126,19 +126,19 @@ const Home = () => {
       <Sidebar />
 
       {/* {notes} */}
-      {(tab === "notes" || !tab) && <Notes notes={notes} updateNotes={updateNotes} />}
+      {(tab === "notes" || !tab) && <Notes notes={notes} updateNotes={updateNotes} tab={tab}/>}
 
       {/* {remainders} */}
-      {tab === "remainders" && <Remainders />}
+      {tab === "remainders" && <Remainders tab={tab}/>}
 
       {/* {edit-labels} */}
-      {tab === "edit-labels" && <EditLabels />}
+      {tab === "edit-labels" && <EditLabels tab={tab}/>}
 
       {/* {archive} */}
-      {tab === "archive" && <Archive />}
+      {tab === "archive" && <Archive tab={tab}/>}
 
       {/* {bin} */}
-      {tab === "bin" && <Bin />}
+      {tab === "bin" && <Bin tab={tab}/>}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './noteForm.css';
 import useNotes from '../../hooks/useNotes';
 
-const NoteForm = () => {
+const NoteForm = ({triggerRender}) => {
   const {addNote} = useNotes();
   const [isExpanded, setIsExpanded] = useState(false);
   const [formData, setFormData] = useState({});
@@ -11,14 +11,15 @@ const NoteForm = () => {
   console.log(formData);
 
   const handlePinnedState = (value) => {
-    setPinned(!value);
     setFormData({ ...formData, pinned: !value });
+    setPinned(!value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("handle Submit called");
     await addNote(formData);
+    triggerRender(prev=>prev+1);
     setIsExpanded(false);
     setFormData({});
   };
@@ -26,7 +27,6 @@ const NoteForm = () => {
   return (
     <div
       className={`search ${isExpanded ? "expanded" : ""}`}
-      onClick={() => setIsExpanded(true)}
     >
       <input
         type="text"
@@ -34,7 +34,9 @@ const NoteForm = () => {
         placeholder="Take a note..."
         readOnly
         style={{ display: isExpanded ? "none" : "" }}
+        onClick={() => setIsExpanded(true)}
       />
+      <i className={`fa-solid fa-pen`} style={{color:"gray", display: isExpanded ? "none" : "" }}></i>
       {isExpanded && (
         <form onSubmit={handleSubmit} className="expandedInput">
           <div className="editor">

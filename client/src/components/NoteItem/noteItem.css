@@ -4,9 +4,24 @@
     justify-content: space-between;
     min-height: 150px;
     width: 300px;
-    border: 1px groove darkgrey;
+    border: .5px groove lightgray;
     padding: 15px;
     border-radius: 10px;
+}
+.note .display{
+    width: 100%;
+    height: 100%;
+}
+.note .display .title-date{
+    display: flex;
+    justify-content: space-between;
+}
+.note .display .title-date div{
+    min-width: fit-content;
+}
+.note .display .title-date .edit-date{
+    color: grey;
+    font-size: small;
 }
 .note .edit-options{
     display: flex;
@@ -16,8 +31,9 @@
 .note:hover .edit-options{
     visibility: visible;
 }
-.note .edit-options div:hover{
+.note .edit-options div i:hover{
     cursor: pointer;
+    color: rgb(108, 171, 244);   
 }
 .note:hover{
     border: none;
