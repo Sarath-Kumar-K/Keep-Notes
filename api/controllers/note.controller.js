@@ -65,8 +65,6 @@ export const searchNote = async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 6;
 
-  console.log("search Term = " + searchTerm);
-
   const searchFilter = searchTerm
     ? {
         $or: [
@@ -75,13 +73,11 @@ export const searchNote = async (req, res, next) => {
         ],
       }
     : {};
-  console.log("Search Filter =", JSON.stringify(searchFilter));
   try {
     const totalNotes = await Note.countDocuments(searchFilter);
     const notes = await Note.find(searchFilter)
       .skip((page - 1) * limit)
       .limit(limit);
-    console.log("Notes Found =", notes);
     res.status(200).json({
       notes,
       totalNotes,
