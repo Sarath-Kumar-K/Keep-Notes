@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
 import logo from "../../assets/images/logo.png";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
