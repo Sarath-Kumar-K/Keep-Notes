@@ -1,38 +1,40 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./editModal.css";
 import useNotes from "../../hooks/useNotes";
+import AutoResizeTextarea from '../AutoResizeTextarea/AutoResizeTextarea.jsx';
 
-const EditModal = ({ note, onClose, triggerRender, deleteHandle}) => {
-  const {editNote} = useNotes();
+const EditModal = ({ note, onClose, triggerRender, deleteHandle }) => {
+  const { editNote } = useNotes();
   const [formData, setFormData] = useState({});
   const [pinnedNote, setPinnedNote] = useState(note.pinned);
   const date = new Date(note.updatedAt);
-  const options = {month: 'short',day:'numeric'};
-  const formatedDate = date.toLocaleDateString('en-us',options);
-
-  console.log(formData);
+  const options = { month: "short", day: "numeric" };
 
   if (!note) {
     return null;
   }
   useEffect(() => {
     if (note) {
-      setFormData({ title: note.title, content: note.content, pinned: note.pinned });
+      setFormData({
+        title: note.title,
+        content: note.content,
+        pinned: note.pinned,
+      });
     }
   }, [note]);
 
-  const handlePinned = (pinnedNote)=>{
-    setFormData({...formData,pinned:!pinnedNote});
+  const handlePinned = (pinnedNote) => {
+    setFormData({ ...formData, pinned: !pinnedNote });
     setPinnedNote(!pinnedNote);
-  }
-  const handleSubmit = async(e)=>{
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-      await editNote(note._id,formData);
-      triggerRender(prev => prev + 1);
+    try {
+      await editNote(note._id, formData);
+      triggerRender((prev) => prev + 1);
       setFormData({});
       onClose(false);
-    }catch(error){
+    } catch (error) {
       console.log(error.message);
     }
   };
@@ -40,32 +42,38 @@ const EditModal = ({ note, onClose, triggerRender, deleteHandle}) => {
   const handleDelete = (noteId) => {
     deleteHandle(noteId);
     onClose(false);
-  }
-
+  };
   return (
     <div className="modal-outer">
       <form onSubmit={handleSubmit} className="modal">
         <div className="editor">
-          <div className="title-date">
-          <input
-            type="text"
-            placeholder="Title"
-            defaultValue={note.title}
-            onChange={(e)=> setFormData({...formData,title:e.target.value})}
-            className="title"
-          />
-          <div className="date">{`Edited `+ formatedDate}</div>
-          </div>
-          <textarea
-            placeholder="Content"
+          <div>
+            <AutoResizeTextarea
+              placeHolder="Title"
+              defaultValue={note.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+              classname="title"
+              AutoFocus={false}
+            />
+           </div>
+          <div>
+          <AutoResizeTextarea
+            placeHolder="Take a note..."
             defaultValue={note.content}
-            onChange={(e)=> setFormData({...formData,content:e.target.value})}
-            autoFocus
+            classname="content"
+            onChange={(e) =>
+              setFormData({ ...formData, content: e.target.value })
+            }
+            AutoFocus={true}
           />
+          </div>
+          
         </div>
         <div className="edit-options">
           <div className="options">
-            <div onClick={()=>handlePinned(pinnedNote)}>
+            <div onClick={() => handlePinned(pinnedNote)}>
               {pinnedNote ? (
                 <i
                   className="bi bi-pin-fill"
@@ -81,12 +89,14 @@ const EditModal = ({ note, onClose, triggerRender, deleteHandle}) => {
             <div>
               <i className="bi bi-box-arrow-down"></i>
             </div>
-            <div onClick={()=>handleDelete(note._id)}>
+            <div onClick={() => handleDelete(note._id)}>
               <i className="fa-regular fa-trash-can"></i>
             </div>
           </div>
           <div className="edit">
-            <div className="cancel" onClick={()=>onClose(false)}>cancel</div>
+            <div className="cancel" onClick={() => onClose(false)}>
+              cancel
+            </div>
             <div className="update">
               <input type="submit" value="update" />
             </div>
@@ -96,5 +106,9 @@ const EditModal = ({ note, onClose, triggerRender, deleteHandle}) => {
     </div>
   );
 };
+
+
+
+
 
 export default EditModal;

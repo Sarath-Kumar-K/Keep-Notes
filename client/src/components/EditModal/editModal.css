@@ -1,78 +1,161 @@
-.modal-outer{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+body.modal-outer{
+  overflow: hidden;
 }
-.modal-outer .modal{
-    position: absolute;
-    top:170px;
-    left: 470px;
-    min-height: 200px;
-    max-height: 600px;
-    width: 600px;
-    background-color: white;
-    border-radius: 8px;
-    padding: 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.modal .editor{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-height: 600px;
-    overflow-y: auto;
-    box-sizing: border-box;
+.modal-outer {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-}
-.modal .editor .title-date{
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    overflow: hidden;
+    z-index: 1000;
+  }
+.modal-outer .modal{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: white;
 }
-.modal .editor .title-date input,.modal .editor .title-date .date,.modal .editor textarea{
-    border: none;
-    outline: none;
-    height: auto;
-    min-width: fit-content;
+.modal-outer .modal .editor{
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
-.modal .editor .title-date .date{
-    font-size: smaller;
-    color: rgb(110, 109, 109);
+.modal-outer .modal .editor .title {
+  font-weight: bold;
 }
-.modal .editor input{
-    font-size: 20px;
-    font-weight: 500;
+.modal-outer .modal .editor textarea {
+  height: auto;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
 }
-.modal .editor textarea{
-    font-size: 16px;
+.modal-outer .modal .edit-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+  background: white;
+  position: sticky;
+  bottom: 0;
 }
-.modal .edit-options{
-    display: flex;
-    justify-content: space-between;
+.modal-outer .modal .edit-options .options,.modal-outer .modal .edit-options .edit {
+  display: flex;
+  cursor: pointer;
 }
-.modal .edit-options .options,.edit-options .edit{
-    display: flex;
-    gap: 20px;
+.modal-outer .modal .edit-options .cancel {
+  color: gray;
 }
-.modal .edit-options .options,.edit-options .edit i{
-    font-size: 18px;
+.modal-outer .modal .edit-options .update input,.modal-outer .modal .edit-options .cancel {
+  cursor: pointer;
+  border: none;
+  background-color: white;
 }
-.modal .edit-options .options div,.modal .edit-options .edit div{
-    cursor: pointer;
+.modal-outer .modal .edit-options .update input{
+  color: #fcba03;
 }
-.modal .edit-options .edit .cancel,.modal .edit-options .edit input{
-    border: 0.5px groove lightgrey;
-    padding: 3px 8px;
+.modal-outer .modal .edit-options .update input:hover{
+  color: white;
+  background-color:#fcba03;
+}
+.modal-outer .modal .edit-options .cancel:hover{
+  color: white;
+  background-color: #383838;
+}
+
+@media screen and (max-width: 483px) {
+  .modal-outer .modal {
+    width: 300px;
+    max-height: 50vh;
     border-radius: 5px;
-    cursor: pointer;
+  }
+  .modal-outer .modal .editor {
+    padding:10px;
+    gap:5px;
+  }
+  .modal-outer .modal .editor .title {
+    font-size: 18px;
+    line-height: 1.4rem;
+  }
+  .modal-outer .modal .editor .content{
+    font-size: 16px;
+    line-height: 1.2rem;
+  }
+  .modal-outer .modal .edit-options {
+    padding:5px 10px;
+  }
+  .modal-outer .modal .edit-options .options,.modal-outer .modal .edit-options .edit {
+    gap: 12px;
+  }
+  .modal-outer .modal .edit-options .update input,.modal-outer .modal .edit-options .cancel{
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
 }
-.modal .edit-options .edit input:hover{
-    color: white;
-    background-color: rgb(245, 197, 77);
+
+@media screen and (min-width: 484px) and (max-width:737px){
+  .modal-outer .modal {
+    width: 400px;
+    max-height: 70vh;
+    border-radius: 8px;
+  }
+  .modal-outer .modal .editor {
+    padding:15px;
+    gap:8px;
+  }
+  .modal-outer .modal .editor .title {
+    font-size: 18px;
+    line-height: 1.4rem;
+  }
+  .modal-outer .modal .editor .content{
+    font-size: 16px;
+    line-height: 1.2rem;
+  }
+  .modal-outer .modal .edit-options {
+    padding:8px 14px;
+  }
+  .modal-outer .modal .edit-options .options,.modal-outer .modal .edit-options .edit {
+    gap: 16px;
+  }
+  .modal-outer .modal .edit-options .update input,.modal-outer .modal .edit-options .cancel{
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+}
+
+@media screen and (min-width: 738px) {
+  .modal-outer .modal {
+    width: 600px;
+    max-height: 80vh;
+    border-radius: 8px;
+  }
+  .modal-outer .modal .editor {
+    padding:20px;
+    gap:10px;
+  }
+  .modal-outer .modal .editor .title {
+    font-size: 20px;
+    line-height: 1.5rem;
+  }
+  .modal-outer .modal .editor .content{
+    font-size: 18px;
+    line-height: 1.4rem;
+  }
+  .modal-outer .modal .edit-options {
+    padding:10px 20px;
+  }
+  .modal-outer .modal .edit-options .options,.modal-outer .modal .edit-options .edit {
+    gap: 20px;
+  }
+  .modal-outer .modal .edit-options .update input,.modal-outer .modal .edit-options .cancel{
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
 }

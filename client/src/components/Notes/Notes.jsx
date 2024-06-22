@@ -5,16 +5,27 @@ import NoteForm from "../NoteForm/NoteForm.jsx";
 import NoteItem from "../NoteItem/NoteItem.jsx";
 import useNotes from "../../hooks/useNotes.js";
 import { useLocation } from "react-router-dom";
+import Errorpopup from "../Errorpopup/Errorpopup.jsx";
+import Successpopup from "../Successpopup/Successpopup.jsx";
 
 const Notes = ({ tab }) => {
-  const { notes, totalNotes, page, setPage, fetchNotes, deleteNote, searchNote } =
-    useNotes();
+  const {
+    notes,
+    totalNotes,
+    page,
+    setPage,
+    fetchNotes,
+    deleteNote,
+    searchNote,
+  } = useNotes();
   const [editModal, setEditModal] = useState(false);
   const [editNote, setEditNote] = useState({});
   const totalPages = Math.ceil(totalNotes / 6);
   const [triggerRender, setTriggerRender] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -22,16 +33,14 @@ const Notes = ({ tab }) => {
     setSearchTerm(term || "");
   }, [location.search]);
   useEffect(() => {
-    if(tab==='notes'){
+    if (tab === "notes") {
       fetchNotes();
-    }else if(tab==='search'){
-      if(searchTerm){
+    } else if (tab === "search") {
+      if (searchTerm) {
         searchNote(searchTerm);
       }
     }
   }, [page, triggerRender, searchTerm]);
-  
-  console.log(searchTerm + ' from notes.js')
 
   const handleEditNote = (note) => {
     setEditNote(note);
@@ -44,15 +53,26 @@ const Notes = ({ tab }) => {
   const handleDeleteNote = async (noteId) => {
     try {
       await deleteNote(noteId);
+      setSuccessMessage("Note Deleted Successfully");
+      setErrorMessage(null);
       setTriggerRender((prev) => prev + 1);
     } catch (error) {
-      console.log(error.message);
+      setErrorMessage(error.message);
+      setSuccessMessage(null);
     }
   };
   return (
     <div className="main">
       {/* form */}
-      <div className="note-form" style={{display:(tab==='search' || tab==='archive' || tab==='bin') ? 'none':'block'}}>
+      <div
+        className="note-form"
+        style={{
+          display:
+            tab === "search" || tab === "archive" || tab === "bin"
+              ? "none"
+              : "block",
+        }}
+      >
         <NoteForm triggerRender={setTriggerRender} />
       </div>
       {/* notes */}
@@ -100,6 +120,18 @@ const Notes = ({ tab }) => {
           onClose={setEditModal}
           triggerRender={setTriggerRender}
           deleteHandle={handleDeleteNote}
+        />
+      )}
+      {errorMessage && (
+        <Errorpopup
+          error={errorMessage}
+          onClose={() => setErrorMessage(null)}
+        />
+      )}
+      {successMessage && (
+        <Successpopup
+          message={successMessage}
+          onClose={() => setSuccessMessage(null)}
         />
       )}
     </div>

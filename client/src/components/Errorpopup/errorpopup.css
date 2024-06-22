@@ -1,0 +1,30 @@
+.error-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #ffcccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* Ensure it's above other content */
+  }
+  
+  .error-message {
+    color: #900;
+    font-weight: bold;
+  }
+  
+  .close-btn {
+    margin-top: 5px;
+    background-color: #cc3333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    background-color: #ff3333;
+  }
+  
