@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import './noteForm.css';
-import useNotes from '../../hooks/useNotes';
+import "./noteForm.css";
+import useNotes from "../../hooks/useNotes";
+import AutoResizeTextarea from "../AutoResizeTextarea/AutoResizeTextarea";
 
-const NoteForm = ({triggerRender}) => {
-  const {addNote} = useNotes();
+const NoteForm = ({ triggerRender }) => {
+  const { addNote } = useNotes();
   const [isExpanded, setIsExpanded] = useState(false);
   const [formData, setFormData] = useState({});
   const [pinned, setPinned] = useState(false);
@@ -19,15 +20,13 @@ const NoteForm = ({triggerRender}) => {
     e.preventDefault();
     console.log("handle Submit called");
     await addNote(formData);
-    triggerRender(prev=>prev+1);
+    triggerRender((prev) => prev + 1);
     setIsExpanded(false);
     setFormData({});
   };
 
   return (
-    <div
-      className={`search ${isExpanded ? "expanded" : ""}`}
-    >
+    <div className={`search ${isExpanded ? "expanded" : ""}`}>
       <input
         type="text"
         className="input"
@@ -36,28 +35,35 @@ const NoteForm = ({triggerRender}) => {
         style={{ display: isExpanded ? "none" : "" }}
         onClick={() => setIsExpanded(true)}
       />
-      <i className={`fa-solid fa-pen`} style={{color:"gray", display: isExpanded ? "none" : "" }}></i>
+      <i
+        className={`fa-solid fa-pen`}
+        style={{ color: "gray", display: isExpanded ? "none" : "" }}
+      ></i>
       {isExpanded && (
         <form onSubmit={handleSubmit} className="expandedInput">
           <div className="editor">
-            <input
-              type="text"
-              placeholder="Title"
-              id="title"
-              // value={title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-            />
-            <textarea
-              placeholder="Take a note..."
-              id="content"
-              // value={content}
-              onChange={(e) =>
-                setFormData({ ...formData, content: e.target.value })
-              }
-              autoFocus
-            />
+            <div>
+              <AutoResizeTextarea
+                placeHolder="Title"
+                classname="title"
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
+                AutoFocus={false}
+                Rows={1}
+              />
+            </div>
+            <div>
+              <AutoResizeTextarea
+                placeHolder="Take a note..."
+                classname="content"
+                onChange={(e) =>
+                  setFormData({ ...formData, content: e.target.value })
+                }
+                AutoFocus={true}
+                Rows={2}
+              />
+            </div>
           </div>
           <div className="edit-options">
             <div className="edit-icons">
@@ -79,10 +85,7 @@ const NoteForm = ({triggerRender}) => {
               </div>
             </div>
             <div className="edit-label">
-              <div
-                className="cancel"
-                onClick={() => setIsExpanded(false)}
-              >
+              <div className="cancel" onClick={() => setIsExpanded(false)}>
                 cancel
               </div>
               <div className="save">

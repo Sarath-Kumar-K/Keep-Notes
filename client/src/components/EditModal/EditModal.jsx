@@ -56,6 +56,7 @@ const EditModal = ({ note, onClose, triggerRender, deleteHandle }) => {
               }
               classname="title"
               AutoFocus={false}
+              Rows={1}
             />
            </div>
           <div>
@@ -67,6 +68,7 @@ const EditModal = ({ note, onClose, triggerRender, deleteHandle }) => {
               setFormData({ ...formData, content: e.target.value })
             }
             AutoFocus={true}
+            Rows={2}
           />
           </div>
           

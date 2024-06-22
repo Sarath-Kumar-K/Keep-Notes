@@ -6,6 +6,7 @@ const AutoResizeTextarea = ({
   placeHolder,
   classname,
   AutoFocus,
+  Rows
 }) => {
   const textareaRef = useRef(null);
 
@@ -26,12 +27,14 @@ const AutoResizeTextarea = ({
 
   return (
     <textarea
+      type="text"
       placeholder={placeHolder}
       className={classname}
       ref={textareaRef}
       defaultValue={defaultValue}
       onChange={handleInput}
       autoFocus={AutoFocus}
+      rows={Rows}
     />
   );
 };
