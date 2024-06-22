@@ -3,13 +3,11 @@ import "./noteForm.css";
 import useNotes from "../../hooks/useNotes";
 import AutoResizeTextarea from "../AutoResizeTextarea/AutoResizeTextarea";
 
-const NoteForm = ({ triggerRender }) => {
+const NoteForm = ({ triggerRender, SuccessMessage, ErrorMessage }) => {
   const { addNote } = useNotes();
   const [isExpanded, setIsExpanded] = useState(false);
   const [formData, setFormData] = useState({});
   const [pinned, setPinned] = useState(false);
-
-  console.log(formData);
 
   const handlePinnedState = (value) => {
     setFormData({ ...formData, pinned: !value });
@@ -18,11 +16,18 @@ const NoteForm = ({ triggerRender }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("handle Submit called");
-    await addNote(formData);
-    triggerRender((prev) => prev + 1);
-    setIsExpanded(false);
-    setFormData({});
+
+    try {
+      await addNote(formData);
+      ErrorMessage(null);
+      SuccessMessage("Note added successfully");
+      triggerRender((prev) => prev + 1);
+      setIsExpanded(false);
+      setFormData({});
+    } catch (error) {
+      SuccessMessage(null);
+      ErrorMessage(error.message);
+    }
   };
 
   return (

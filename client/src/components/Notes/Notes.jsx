@@ -41,7 +41,6 @@ const Notes = ({ tab }) => {
       }
     }
   }, [page, triggerRender, searchTerm]);
-
   const handleEditNote = (note) => {
     setEditNote(note);
     setEditModal(true);
@@ -73,7 +72,7 @@ const Notes = ({ tab }) => {
               : "block",
         }}
       >
-        <NoteForm triggerRender={setTriggerRender} />
+        <NoteForm triggerRender={setTriggerRender} SuccessMessage={setSuccessMessage} ErrorMessage={setErrorMessage} />
       </div>
       {/* notes */}
       <div className="notes">
@@ -120,6 +119,8 @@ const Notes = ({ tab }) => {
           onClose={setEditModal}
           triggerRender={setTriggerRender}
           deleteHandle={handleDeleteNote}
+          SuccessMessage={setSuccessMessage}
+          ErrorMessage={setErrorMessage}
         />
       )}
       {errorMessage && (

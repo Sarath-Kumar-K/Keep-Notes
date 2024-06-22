@@ -3,12 +3,10 @@ import "./editModal.css";
 import useNotes from "../../hooks/useNotes";
 import AutoResizeTextarea from '../AutoResizeTextarea/AutoResizeTextarea.jsx';
 
-const EditModal = ({ note, onClose, triggerRender, deleteHandle }) => {
+const EditModal = ({ note, onClose, triggerRender, deleteHandle, SuccessMessage, ErrorMessage }) => {
   const { editNote } = useNotes();
   const [formData, setFormData] = useState({});
   const [pinnedNote, setPinnedNote] = useState(note.pinned);
-  const date = new Date(note.updatedAt);
-  const options = { month: "short", day: "numeric" };
 
   if (!note) {
     return null;
@@ -33,9 +31,13 @@ const EditModal = ({ note, onClose, triggerRender, deleteHandle }) => {
       await editNote(note._id, formData);
       triggerRender((prev) => prev + 1);
       setFormData({});
+      SuccessMessage("Note edited successfully");
+      ErrorMessage(null);
       onClose(false);
     } catch (error) {
-      console.log(error.message);
+      ErrorMessage(error.message);
+      SuccessMessage(null);
+      onClose(false);
     }
   };
 
